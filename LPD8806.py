@@ -86,5 +86,5 @@ class LPD8806:
     def fill(self, r, g, b, show=True):
         for i in range(self.count):
             self.setPixelRGB(i, r, g, b) 
-	if show:
-        	self.show()
+        if show:
+            self.show()
