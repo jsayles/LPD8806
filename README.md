@@ -9,3 +9,7 @@ LPD8806 LED Strip driver for Raspberry Pi
 
 ## Driver Origin
 http://russnelson.com/LPD8806.py
+
+
+## Setup
+pip install -r requirements.txt --user
