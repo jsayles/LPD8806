@@ -89,13 +89,11 @@ class LPD8806:
         c = self.getColour(r, g, b)
         self._setPixelColour(n, c)
 
-    def fillStrip(self, r, g, b, pulse=0.3, autoUpdate=True):
+    def fillStrip(self, r, g, b, autoUpdate=True):
         for i in range(self.pixel_count):
             self.setPixel(i, r, g, b)
-            if pulse > 0:
-                time.sleep(pulse)
         if autoUpdate:
             self.show()
 
     def off(self):
-        self.fill_strip(0, 0, 0, pulse=0)
+        self.fillStrip(0, 0, 0)
