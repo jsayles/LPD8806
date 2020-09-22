@@ -10,11 +10,16 @@ import time
 
 class LPD8806:
 
+    RED_I = 0
+    GRN_I = 1
+    BLU_I = 2
+
     def __init__(self, count, dataPin, clkPin):
         self.data_pin = dataPin
         self.clock_pin = clkPin
         self.pixel_count = count
         self.pixels = [0] * count * 3
+        self.colour = [0, 0, 0]
 
         # Setup the GPIO pins
         GPIO.setmode(GPIO.BCM)
@@ -82,7 +87,7 @@ class LPD8806:
         time.sleep(0.005)
 
     ############################################################################
-    # Helper Methods
+    # Generic Helper Methods
     ############################################################################
 
     def setPixel(self, n, r, g, b):
@@ -97,3 +102,31 @@ class LPD8806:
 
     def off(self):
         self.fillStrip(0, 0, 0)
+
+    ############################################################################
+    # Colour Specific Helper Methods
+    ############################################################################
+
+    def red(self):
+        self.fillStrip(100, 0, 0)
+
+    def green(self):
+        self.fillStrip(0, 100, 0)
+
+    def blue(self):
+        self.fillStrip(0, 0, 100)
+
+    def fadeInRed(self, delay=0.3):
+        for i in range(0, 100, 1):
+            self.fillStrip(i, 0, 0)
+            time.sleep(delay)
+
+    def fadeInGreen(self, delay=0.3):
+        for i in range(0, 100, 1):
+            self.fillStrip(i, 0, 0)
+            time.sleep(delay)
+
+    def fadeInBlue(self, delay=0.3):
+        for i in range(0, 100, 1):
+            self.fillStrip(i, 0, 0)
+            time.sleep(delay)
