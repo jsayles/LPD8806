@@ -10,6 +10,9 @@ LPD8806 LED Strip driver for Raspberry Pi
 ## Driver Origin
 http://russnelson.com/LPD8806.py
 
+# LED Chain Circuit
+Wire the led chains up using an NPN transistor to connect the GPIO and the 5v rail.
+https://elinux.org/RPi_GPIO_Interface_Circuits
 
 ## Setup
 ```
