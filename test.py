@@ -20,7 +20,7 @@ chain1.off()
 time.sleep(DELAY_SEC)
 chain2.on()
 time.sleep(DELAY_SEC)
-chain3.off()
+chain2.off()
 
 # Test the Buzzer
 #buzzer.buzz(100, DELAY_SEC)
