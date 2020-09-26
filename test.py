@@ -22,3 +22,17 @@ time.sleep(DELAY_SEC)
 chain2.on()
 time.sleep(DELAY_SEC)
 chain2.off()
+
+################################################################################
+# Helper Methods
+################################################################################
+
+def allOn():
+    strip.white()
+    chain1.on()
+    chain2.on()
+
+def allOff():
+    strip.off()
+    chain1.off()
+    chain2.off()
