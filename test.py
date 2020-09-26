@@ -26,11 +26,10 @@ strip.off()
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(LED1_PIN, GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(LED2_PIN, GPIO.OUT, initial=GPIO.LOW)
-GPIO.setup(BUZZ_PIN, GPIO.OUT, initial=GPIO.LOW)
-
-GPIO.cleanup()
 GPIO.output(LED1_PIN, GPIO.HIGH)
 GPIO.output(LED2_PIN, GPIO.HIGH)
 time.sleep(0.3)
 GPIO.output(LED1_PIN, GPIO.LOW)
 GPIO.output(LED2_PIN, GPIO.LOW)
+
+GPIO.setup(BUZZ_PIN, GPIO.OUT, initial=GPIO.LOW)
