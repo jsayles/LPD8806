@@ -1,8 +1,8 @@
 import RPi.GPIO as GPIO
 
-from LPD8806 import LPD8806
-from ledchain import LEDChain
-#from buzzer import Buzzer
+from lightpi.LPD8806 import LPD8806
+from lightpi.ledchain import LEDChain
+#from lightpi.buzzer import Buzzer
 
 
 LED1_PIN = 7
