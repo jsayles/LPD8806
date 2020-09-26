@@ -3,7 +3,6 @@
 # http://russnelson.com/LPD8806.py
 ################################################################################
 
-
 import RPi.GPIO as GPIO
 import time
 
@@ -23,7 +22,6 @@ class LPD8806:
 
         # Setup the GPIO pins
         GPIO.setmode(GPIO.BCM)
-        GPIO.setwarnings(False)
         GPIO.setup(self.clock_pin, GPIO.OUT)
         GPIO.setup(self.data_pin, GPIO.OUT)
 
@@ -110,11 +108,23 @@ class LPD8806:
     def red(self):
         self.fillStrip(100, 0, 0)
 
+    def orange(self):
+        self.fillStrip(100, 100, 0)
+
     def green(self):
         self.fillStrip(0, 100, 0)
 
+    def aqua(self):
+        self.fillStrip(0, 100, 100)
+
     def blue(self):
         self.fillStrip(0, 0, 100)
+
+    def purple(self):
+        self.fillStrip(100, 0, 100)
+
+    def white(self):
+        self.fillStrip(100, 100, 100)
 
     def fadeInRed(self, delay=0.1):
         for i in range(0, 100, 1):
