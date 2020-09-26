@@ -1,96 +1,54 @@
+################################################################################
+# Based on code from:
 # From http://www.linuxcircle.com/2015/04/12/how-to-play-piezo-buzzer-tunes-on-raspberry-pi-gpio-with-pwm/
+################################################################################
+
 import time
 import RPi.GPIO as GPIO
 from rtttl import parse_rtttl
 
-dixie = "Dixie:d=4,o=5,b=225:8g#,8f,c#,c#,8c#,8d#,8f,8f#,g#,g#,g#,f"
+DIXIE = "Dixie:d=4,o=5,b=225:8g#,8f,c#,c#,8c#,8d#,8f,8f#,g#,g#,g#,f"
+
 
 class Buzzer(object):
- def __init__(self, pin):
-  GPIO.setmode(GPIO.BCM)  
-  self.buzzer_pin = pin
-  GPIO.setup(self.buzzer_pin, GPIO.IN)
-  GPIO.setup(self.buzzer_pin, GPIO.OUT)
-  print("buzzer ready")
 
- def __del__(self):
-  class_name = self.__class__.__name__
-  print (class_name, "finished")
+    def __init__(self, bcm_pin):
+        self.buzzer_pin = pin
 
- def buzz(self, pitch, duration):
- 
-  if(pitch==0):
-   time.sleep(duration)
-   return
-  period = 1.0 / pitch     #in physics, the period (sec/cyc) is the inverse of the frequency (cyc/sec)
-  delay = period / 2     #calcuate the time for half of the wave  
-  cycles = int(duration * pitch)   #the number of waves to produce is the duration times the frequency
+        # Setup the GPIO pins
+        GPIO.setmode(self.buzzer_pin)
+        GPIO.setup(self.buzzer_pin, GPIO.IN)
+        GPIO.setup(self.buzzer_pin, GPIO.OUT)
 
-  for i in range(cycles):
-   GPIO.output(self.buzzer_pin, True)   #set pin 18 to high
-   time.sleep(delay)    #wait with pin 18 high
-   GPIO.output(self.buzzer_pin, False)    #set pin 18 to low
-   time.sleep(delay)    #wait with pin 18 low
+    def __del__(self):
+        class_name = self.__class__.__name__
 
- def play_rtttl(self, rtttl_tune):
-  GPIO.setmode(GPIO.BCM)
-  GPIO.setup(self.buzzer_pin, GPIO.OUT)
-  tune = parse_rtttl(rtttl_tune)
-  print("Playing: %s" % tune['title'])
-  for note in tune['notes']:
-   p = note['frequency']
-   d = 1.0 * note['duration'] / 1000
-   self.buzz(p, d)
+    def buzz(self, pitch, duration):
+        if(pitch == 0):
+            time.sleep(duration)
+            return
 
- def play(self, tune):
-  GPIO.setmode(GPIO.BCM)
-  GPIO.setup(self.buzzer_pin, GPIO.OUT)
-  x=0
+        # In physics, the period (sec/cyc) is the inverse of the frequency (cyc/sec)
+        period = 1.0 / pitch
 
-  print("Playing tune ",tune)
-  if(tune==1):
-    pitches=[262,294,330,349,392,440,494,523, 587, 659,698,784,880,988,1047]
-    duration=0.1
-    for p in pitches:
-      self.buzz(p, duration)
-      time.sleep(duration *0.5)
-    for p in reversed(pitches):
-      self.buzz(p, duration)
-      time.sleep(duration *0.5)
+        # Calcuate the time for half of the wave
+        delay = period / 2
 
-  elif(tune==2):
-    pitches=[262,330,392,523,1047]
-    duration=[0.2,0.2,0.2,0.2,0.2,0,5]
-    for p in pitches:
-      self.buzz(p, duration[x])
-      time.sleep(duration[x] *0.5)
-      x+=1
-  elif(tune==3):
-    pitches=[392,294,0,392,294,0,392,0,392,392,392,0,1047,262]
-    duration=[0.2,0.2,0.2,0.2,0.2,0.2,0.1,0.1,0.1,0.1,0.1,0.1,0.8,0.4]
-    for p in pitches:
-      self.buzz(p, duration[x])
-      time.sleep(duration[x] *0.5)
-      x+=1
+        # Number of waves to produce is the duration times the frequency
+        cycles = int(duration * pitch)
 
-  elif(tune==4):
-    pitches=[1047, 988,659]
-    duration=[0.1,0.1,0.2]
-    for p in pitches:
-      self.buzz(p, duration[x])
-      time.sleep(duration[x] *0.5)
-      x+=1
+        for i in range(cycles):
+            GPIO.output(self.buzzer_pin, True)
+            time.sleep(delay)
+            GPIO.output(self.buzzer_pin, False)
+            time.sleep(delay)
 
-  elif(tune==5):
-    pitches=[1047, 988,523]
-    duration=[0.1,0.1,0.2]
-    for p in pitches:
-      self.buzz(p, duration[x])
-      time.sleep(duration[x] *0.5)
-      x+=1
-
-  GPIO.setup(self.buzzer_pin, GPIO.IN)
-
-if __name__ == "__main__":
-  buzzer = Buzzer(18)
-  buzzer.play_rtttl(dixie)
+    def play_rtttl(self, rtttl_tune):
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(self.buzzer_pin, GPIO.OUT)
+        tune = parse_rtttl(rtttl_tune)
+        print("Playing: %s" % tune['title'])
+        for note in tune['notes']:
+            p = note['frequency']
+            d = 1.0 * note['duration'] / 1000
+            self.buzz(p, d)
