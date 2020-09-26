@@ -1,41 +1,26 @@
 import time
 
-import RPi.GPIO as GPIO
-from LPD8806 import LPD8806
+from hardware import *
 
-
-LED1_PIN = 7
-LED2_PIN = 8
-BUZZ_PIN = 9
-STRIP_DATA = 10
-STRIP_CLCK = 11
-
+DELAY_SEC = 0.3
 
 # Test the RGB Strip
-strip = LPD8806(32, STRIP_DATA, STRIP_CLCK)
 strip.red()
-time.sleep(0.3)
+time.sleep(DELAY_SEC)
 strip.green()
-time.sleep(0.3)
+time.sleep(DELAY_SEC)
 strip.blue()
-time.sleep(0.3)
+time.sleep(DELAY_SEC)
 strip.off()
 
-
 # Test the LED Chains
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(LED1_PIN, GPIO.OUT, initial=GPIO.LOW)
-GPIO.setup(LED2_PIN, GPIO.OUT, initial=GPIO.LOW)
-GPIO.output(LED1_PIN, GPIO.HIGH)
-time.sleep(0.3)
-GPIO.output(LED1_PIN, GPIO.LOW)
-time.sleep(0.3)
-GPIO.output(LED2_PIN, GPIO.HIGH)
-time.sleep(0.3)
-GPIO.output(LED2_PIN, GPIO.LOW)
+chain1.on()
+time.sleep(DELAY_SEC)
+chain1.off()
+time.sleep(DELAY_SEC)
+chain2.on()
+time.sleep(DELAY_SEC)
+chain3.off()
 
 # Test the Buzzer
-GPIO.setup(BUZZ_PIN, GPIO.OUT, initial=GPIO.LOW)
-GPIO.output(BUZZ_PIN, GPIO.HIGH)
-time.sleep(0.3)
-GPIO.output(BUZZ_PIN, GPIO.LOW)
+buzzer.buzz(100, DELAY_SEC)
