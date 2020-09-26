@@ -13,7 +13,7 @@ DIXIE = "Dixie:d=4,o=5,b=225:8g#,8f,c#,c#,8c#,8d#,8f,8f#,g#,g#,g#,f"
 class Buzzer(object):
 
     def __init__(self, bcm_pin):
-        self.buzzer_pin = pin
+        self.buzzer_pin = bcm_pin
 
         # Setup the GPIO pins
         GPIO.setmode(self.buzzer_pin)
