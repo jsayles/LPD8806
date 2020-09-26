@@ -1,6 +1,7 @@
 import time
 
-from hardware import *
+from lightpi.hardware import strip, chain1, chain2
+
 
 DELAY_SEC = 0.3
 
@@ -21,6 +22,3 @@ time.sleep(DELAY_SEC)
 chain2.on()
 time.sleep(DELAY_SEC)
 chain2.off()
-
-# Test the Buzzer
-#buzzer.buzz(100, DELAY_SEC)
