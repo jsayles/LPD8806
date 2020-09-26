@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 
 from LPD8806 import LPD8806
 from ledchain import LEDChain
-from buzzer import Buzzer
+#from buzzer import Buzzer
 
 
 LED1_PIN = 7
@@ -26,4 +26,4 @@ GPIO.setup(BUZZ_PIN, GPIO.OUT, initial=GPIO.LOW)
 strip = LPD8806(STRIP_COUNT, STRIP_DATA, STRIP_CLCK)
 chain1 = LEDChain(LED1_PIN)
 chain2 = LEDChain(LED2_PIN)
-buzzer = Buzzer(BUZZ_PIN)
+#buzzer = Buzzer(BUZZ_PIN)

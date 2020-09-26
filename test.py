@@ -23,4 +23,4 @@ time.sleep(DELAY_SEC)
 chain3.off()
 
 # Test the Buzzer
-buzzer.buzz(100, DELAY_SEC)
+#buzzer.buzz(100, DELAY_SEC)
