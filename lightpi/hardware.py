@@ -13,7 +13,6 @@ STRIP_CLCK = 11
 STRIP_COUNT = 32
 
 # Setup the GPIO Pins
-GPIO.cleanup()
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(STRIP_CLCK, GPIO.OUT)
