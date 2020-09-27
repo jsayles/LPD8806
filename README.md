@@ -14,6 +14,8 @@ http://russnelson.com/LPD8806.py
 Wire the led chains up using an NPN transistor to connect the GPIO and the 5v rail.
 https://elinux.org/RPi_GPIO_Interface_Circuits
 
+![circuit diagram](https://raw.githubusercontent.com/jsayles/LightPi/master/docs/npn_switch.png?raw=true)
+
 ## Setup
 ```
 sudo apt install python3-pip
