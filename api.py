@@ -35,11 +35,11 @@ def light_dim():
     return 'DIM'
 
 
-@app.route("/api/RED")
+@app.route("/api/red")
 def light_red():
-    strip.red()
     chain1.off()
     chain2.off()
+    strip.fadeInRed()
     return 'RED'
 
 
