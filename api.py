@@ -36,7 +36,7 @@ def light_dim():
 
 
 @app.route("/api/RED")
-def light_off():
+def light_red():
     strip.red()
     chain1.off()
     chain2.off()
