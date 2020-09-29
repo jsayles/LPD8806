@@ -126,17 +126,17 @@ class LPD8806:
     def white(self):
         self.fillStrip(100, 100, 100)
 
-    def fadeInRed(self, delay=0.1):
-        for i in range(0, 50, 1):
+    def fadeInRed(self, max=50, delay=0.1, step=1):
+        for i in range(0, max, step):
             self.fillStrip(i, 0, 0)
             time.sleep(delay)
 
-    def fadeInGreen(self, delay=0.1):
-        for i in range(0, 50, 1):
+    def fadeInGreen(self, max=50, delay=0.1, step=1):
+        for i in range(0, max, step):
             self.fillStrip(0, i, 0)
             time.sleep(delay)
 
-    def fadeInBlue(self, delay=0.1):
-        for i in range(0, 50, 1):
+    def fadeInBlue(self, max=50, delay=0.1, step=1):
+        for i in range(0, max, step):
             self.fillStrip(0, 0, i)
             time.sleep(delay)
