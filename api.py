@@ -20,12 +20,12 @@ def light_on():
 
 
 @app.route("/api/off")
-def light_on():
+def light_off():
     strip.off()
     chain1.off()
     chain2.off()
     return True
 
-    
+
 if __name__ == "__main__":
     app.run()
