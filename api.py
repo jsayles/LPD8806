@@ -39,7 +39,7 @@ def light_dim():
 def light_red():
     chain1.off()
     chain2.off()
-    strip.fadeInRed()
+    strip.fadeInRed(max=50, step=2, delay=0.05)
     return 'RED'
 
 
