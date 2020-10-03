@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 
 
-class LEDChain:
+class LEDString:
 
     def __init__(self, bcm_pin):
         self.pin = bcm_pin

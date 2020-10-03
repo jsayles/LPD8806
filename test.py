@@ -1,6 +1,6 @@
 import time
 
-from lightpi.hardware import strip, chain1, chain2
+from lightpi.hardware import strip, string1, string2
 
 
 DELAY_SEC = 0.3
@@ -14,14 +14,14 @@ strip.blue()
 time.sleep(DELAY_SEC)
 strip.off()
 
-# Test the LED Chains
-chain1.on()
+# Test the LED Strings
+string1.on()
 time.sleep(DELAY_SEC)
-chain1.off()
+string1.off()
 time.sleep(DELAY_SEC)
-chain2.on()
+string2.on()
 time.sleep(DELAY_SEC)
-chain2.off()
+string2.off()
 
 ################################################################################
 # Helper Methods
@@ -29,10 +29,10 @@ chain2.off()
 
 def allOn():
     strip.white()
-    chain1.on()
-    chain2.on()
+    string1.on()
+    string2.on()
 
 def allOff():
     strip.off()
-    chain1.off()
-    chain2.off()
+    string1.off()
+    string2.off()
