@@ -43,14 +43,14 @@ class PWMString:
         self.setBrightness(0)
 
     def fadeIn(self, delay=0.05):
-        # Loop 0 to 100 stepping by 5 each loop
+        # Loop up by 5 each loop
         for l in range(0, 100, 5):
             self.setBrightness(l)
             time.sleep(delay)
         self.on()
 
     def fadeOut(self, delay=0.05):
-        # Loop 95 to 5 stepping down by 5 each loop
+        # Loop down by 5 each loop
         for l in range(100, 0, -5):
             self.setBrightness(l)
             time.sleep(delay)
