@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 
 from lightpi.LPD8806 import LPD8806
-from lightpi.ledstring import LEDString
+from lightpi.ledstring import PWMString
 #from lightpi.buzzer import Buzzer
 
 
@@ -23,6 +23,6 @@ GPIO.setup(BUZZ_PIN, GPIO.OUT, initial=GPIO.LOW)
 
 # Instantiate our hardware
 strip = LPD8806(STRIP_COUNT, STRIP_DATA, STRIP_CLCK)
-string1 = LEDString(STRING1_PIN)
-string2 = LEDString(STRING2_PIN)
+string1 = PWMString(STRING1_PIN)
+string2 = PWMString(STRING2_PIN)
 #buzzer = Buzzer(BUZZ_PIN)
