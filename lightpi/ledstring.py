@@ -23,6 +23,7 @@ class PWMString:
     def __init__(self, bcm_pin, frequency=200):
         self.pin = bcm_pin
         self.frequency = frequency
+        self.brightness = 0
 
         # Setup the GPIO pins
         GPIO.setmode(GPIO.BCM)
@@ -34,6 +35,7 @@ class PWMString:
         self.pwm.stop()
 
     def setBrightness(self, level):
+        self.brightness = level
         self.pwm.ChangeDutyCycle(level)
 
     def on(self):
@@ -42,16 +44,16 @@ class PWMString:
     def off(self):
         self.setBrightness(0)
 
-    def fadeIn(self, delay=0.05):
+    def fadeIn(self, brightness=100, delay=0.05):
         # Loop up by 5 each loop
-        for l in range(0, 100, 5):
+        for l in range(0, brightness, 5):
             self.setBrightness(l)
             time.sleep(delay)
         self.on()
 
     def fadeOut(self, delay=0.05):
         # Loop down by 5 each loop
-        for l in range(100, 0, -5):
+        for l in range(self.brightness, 0, -5):
             self.setBrightness(l)
             time.sleep(delay)
         self.off()
