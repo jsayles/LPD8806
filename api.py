@@ -22,16 +22,16 @@ def light_on():
 @app.route("/api/off")
 def light_off():
     strip.off()
-    string1.off()
-    string2.off()
+    string1.fadeOut()
+    string2.fadeOut()
     return 'OFF'
 
 
 @app.route("/api/dim")
 def light_dim():
     strip.off()
-    string1.fadeIn()
-    string2.off()
+    string1.off()
+    string2.fadeIn(50)
     return 'DIM'
 
 
