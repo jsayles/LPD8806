@@ -1,10 +1,12 @@
-from flask import Flask
+from flask import Flask, g
 
 from lightpi.hardware import strip, string1, string2
 
 
 app = Flask(__name__)
 
+# Default Globals
+g.brightness = 50
 
 @app.route("/")
 def home():
@@ -31,7 +33,7 @@ def light_off():
 def light_dim():
     strip.off()
     string1.off()
-    string2.fadeIn(50)
+    string2.fadeIn(g.brightness)
     return 'DIM'
 
 
@@ -39,8 +41,19 @@ def light_dim():
 def light_red():
     string1.off()
     string2.off()
-    strip.fadeInRed(max=50, step=2, delay=0.05)
+    strip.fadeInRed(max=g.brightness, step=2, delay=0.05)
     return 'RED'
+
+
+
+@app.route('/api/brightness/<int:level>')
+def brightness(level):
+    if not level:
+        return "Brightness: %d" % g.brightness
+    if level < 0 or level > 100:
+        return "Invalid Brightness"
+    g.brightness = level
+    return "New Brightess: %d" % level
 
 
 if __name__ == "__main__":
