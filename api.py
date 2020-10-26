@@ -5,8 +5,7 @@ from lightpi.hardware import strip, string1, string2
 
 app = Flask(__name__)
 
-# Default Globals
-g.brightness = 50
+DEFAULT_BRIGHTNESS = 50
 
 @app.route("/")
 def home():
@@ -33,7 +32,8 @@ def light_off():
 def light_dim():
     strip.off()
     string1.off()
-    string2.fadeIn(g.brightness)
+    b = g.pop('brightness', DEFAULT_BRIGHTNESS)
+    string2.fadeIn(b)
     return 'DIM'
 
 
@@ -41,7 +41,8 @@ def light_dim():
 def light_red():
     string1.off()
     string2.off()
-    strip.fadeInRed(max=g.brightness, step=2, delay=0.05)
+    b = g.pop('brightness', DEFAULT_BRIGHTNESS)
+    strip.fadeInRed(max=b, step=2, delay=0.05)
     return 'RED'
 
 
