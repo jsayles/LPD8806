@@ -1,5 +1,7 @@
 import RPi.GPIO as GPIO
 
+import seeed_dht
+
 from lightpi.LPD8806 import LPD8806
 from lightpi.ledstring import PWMString
 #from lightpi.buzzer import Buzzer
@@ -11,6 +13,7 @@ BUZZ_PIN = 9
 STRIP_DATA = 10
 STRIP_CLCK = 11
 STRIP_COUNT = 32
+TEMP_PIN = 12
 
 # Setup the GPIO Pins
 GPIO.setmode(GPIO.BCM)
@@ -25,4 +28,5 @@ GPIO.setup(BUZZ_PIN, GPIO.OUT, initial=GPIO.LOW)
 strip = LPD8806(STRIP_COUNT, STRIP_DATA, STRIP_CLCK)
 string1 = PWMString(STRING1_PIN)
 string2 = PWMString(STRING2_PIN)
+temp_sensor - seeed_dht.DHT("11", TEMP_PIN)
 #buzzer = Buzzer(BUZZ_PIN)
