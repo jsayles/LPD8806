@@ -6,4 +6,3 @@ rtttl
 
 # For Temp Sensor
 grove
-seeed-python-dht
