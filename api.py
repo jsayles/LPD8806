@@ -46,11 +46,8 @@ def light_red():
     return 'RED'
 
 
-
 @app.route('/api/brightness/<int:level>')
 def brightness(level):
-    if not level:
-        return "Brightness: %d" % g.brightness
     if level < 0 or level > 100:
         return "Invalid Brightness"
     g.brightness = level
