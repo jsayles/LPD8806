@@ -9,9 +9,12 @@ import logging
 
 DEBUG = False
 
-SECRET_KEY = 'change_me_before_production'
+# This needs to be set before app is moved into production
+# os.urandom(32).hex()
+SECRET_KEY = "SUPER_SECRET"
 
-WEBCAM_URL = 'http://example.com/webcam'
+# Default to Port of Vancouver
+WEBCAM_URL = "http://207.194.15.97/mjpg/video.mjpg"
 
 
 #################################################################################

@@ -8,11 +8,10 @@ app = Flask(__name__)
 app.config.from_object('settings')
 
 
-
 @app.route("/")
 def home():
-    #return 'Hello, World!'
-    return render_template('home.html')
+    cam_url = app.config['WEBCAM_URL']
+    return render_template('home.html', cam_url=cam_url)
 
 
 if __name__ == "__main__":
