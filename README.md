@@ -42,8 +42,8 @@ pipenv install --three
 
 ## Start Webapp
 There is a startup script ([start_webapp.sh](start_webapp.sh)) that simply starts a tmux
-session (webapp) and fires up flask.  To see the output, you need to attach to the tmux sesson.
-To cancel, attach and
+session (webapp) and fires up pipenv and flask.  To see the output, you need to attach
+to the tmux sesson. To cancel, attach and hit Ctrl-C.
 
 ```
 tmux attach -t webapp
