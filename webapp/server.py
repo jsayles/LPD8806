@@ -67,12 +67,3 @@ def brightness(level):
         return "Invalid Brightness"
     g.brightness = level
     return "New Brightess: %d" % level
-
-
-################################################################################
-# Main decleration
-################################################################################
-
-
-if __name__ == "__main__":
-    app.run(host= '0.0.0.0')
