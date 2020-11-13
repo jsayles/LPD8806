@@ -1,10 +1,14 @@
-import RPi.GPIO as GPIO
+fake_gpio = False
+try:
+    import RPi.GPIO as GPIO
+except ModuleNotFoundError:
+    print("Raspberry Pi GPIO Unavailable")
+    fake_gpio = True
 
 # import seeed_dht
-
+#from lightpi.buzzer import Buzzer
 from lightpi.LPD8806 import LPD8806
 from lightpi.ledstring import PWMString
-#from lightpi.buzzer import Buzzer
 
 
 STRING1_PIN = 7
@@ -16,13 +20,16 @@ STRIP_COUNT = 32
 TEMP_PIN = 14
 
 # Setup the GPIO Pins
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-GPIO.setup(STRIP_CLCK, GPIO.OUT)
-GPIO.setup(STRIP_DATA, GPIO.OUT)
-GPIO.setup(STRING1_PIN, GPIO.OUT, initial=GPIO.LOW)
-GPIO.setup(STRING2_PIN, GPIO.OUT, initial=GPIO.LOW)
-GPIO.setup(BUZZ_PIN, GPIO.OUT, initial=GPIO.LOW)
+if fake_gpio:
+    print("Fake GPIO: Hardware Initialized")
+else:
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
+    GPIO.setup(STRIP_CLCK, GPIO.OUT)
+    GPIO.setup(STRIP_DATA, GPIO.OUT)
+    GPIO.setup(STRING1_PIN, GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(STRING2_PIN, GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(BUZZ_PIN, GPIO.OUT, initial=GPIO.LOW)
 
 # Instantiate our hardware
 strip = LPD8806(STRIP_COUNT, STRIP_DATA, STRIP_CLCK)

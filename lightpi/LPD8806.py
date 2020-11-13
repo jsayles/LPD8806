@@ -3,8 +3,13 @@
 # http://russnelson.com/LPD8806.py
 ################################################################################
 
-import RPi.GPIO as GPIO
 import time
+
+fake_gpio = False
+try:
+    import RPi.GPIO as GPIO
+except ModuleNotFoundError:
+    fake_gpio = True
 
 
 class LPD8806:
@@ -21,9 +26,10 @@ class LPD8806:
         self.colour = [0, 0, 0]
 
         # Setup the GPIO pins
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self.clock_pin, GPIO.OUT)
-        GPIO.setup(self.data_pin, GPIO.OUT)
+        if not fake_gpio:
+            GPIO.setmode(GPIO.BCM)
+            GPIO.setup(self.clock_pin, GPIO.OUT)
+            GPIO.setup(self.data_pin, GPIO.OUT)
 
     ############################################################################
     # Core Methods
@@ -49,6 +55,10 @@ class LPD8806:
         self.pixels[n*3+2] = (c) | 0x80
 
     def _write8(self, d):
+        if fake_gpio:
+            print(f"Fake GPIO:  write({d})")
+            return
+
         # Basic, push SPI data out
         for i in range(8):
             #GPIO.output(self.d, (d & (0x80 >> i)) <> 0)

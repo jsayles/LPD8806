@@ -1,5 +1,10 @@
 import time
-import RPi.GPIO as GPIO
+
+fake_gpio = False
+try:
+    import RPi.GPIO as GPIO
+except ModuleNotFoundError:
+    fake_gpio = True
 
 
 class LEDString:
@@ -8,14 +13,21 @@ class LEDString:
         self.pin = bcm_pin
 
         # Setup the GPIO pins
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self.pin, GPIO.OUT, initial=GPIO.LOW)
+        if not fake_gpio:
+            GPIO.setmode(GPIO.BCM)
+            GPIO.setup(self.pin, GPIO.OUT, initial=GPIO.LOW)
 
     def on(self):
-        GPIO.output(self.pin, GPIO.HIGH)
+        if fake_gpio:
+            print(f"Fake GPIO: LEDString.on()")
+        else:
+            GPIO.output(self.pin, GPIO.HIGH)
 
     def off(self):
-        GPIO.output(self.pin, GPIO.LOW)
+        if fake_gpio:
+            print(f"Fake GPIO: LEDString.off()")
+        else:
+            GPIO.output(self.pin, GPIO.LOW)
 
 
 class PWMString:
@@ -26,17 +38,24 @@ class PWMString:
         self.brightness = 0
 
         # Setup the GPIO pins
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self.pin, GPIO.OUT)
-        self.pwm = GPIO.PWM(self.pin, self.frequency)
-        self.pwm.start(0)
+        if not fake_gpio:
+            GPIO.setmode(GPIO.BCM)
+            GPIO.setup(self.pin, GPIO.OUT)
+            self.pwm = GPIO.PWM(self.pin, self.frequency)
+            self.pwm.start(0)
 
     def __del__(self):
-        self.pwm.stop()
+        if fake_gpio:
+            print(f"Fake GPIO: pwm.stop()")
+        else:
+            self.pwm.stop()
 
     def setBrightness(self, level):
-        self.brightness = level
-        self.pwm.ChangeDutyCycle(level)
+        if fake_gpio:
+            print(f"Fake GPIO: setBrightness({level})")
+        else:
+            self.brightness = level
+            self.pwm.ChangeDutyCycle(level)
 
     def on(self):
         self.setBrightness(100)
