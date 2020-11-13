@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import redirect, render_template, request, session, url_for
+from flask import g, redirect, render_template, request, session, url_for
 
 from lightpi.hardware import strip, string1, string2
 
