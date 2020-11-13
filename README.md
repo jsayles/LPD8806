@@ -16,12 +16,21 @@ https://elinux.org/RPi_GPIO_Interface_Circuits
 ![circuit diagram](https://raw.githubusercontent.com/jsayles/LightPi/master/docs/npn_switch.png?raw=true)
 
 ## Grove Sensors
-The temperature/humidity sensor uses a Seeed Studio Grove module and thus the Grove base platform
+The temperature/humidity sensor uses a Seeed Studio Grove [DHT22](https://wiki.seeedstudio.com/Grove-Temperature_and_Humidity_Sensor_Pro/)
+module and thus the Grove base platform
 needs to be installed.  For detailed information:  [Grove Wiki](https://wiki.seeedstudio.com/Grove_Base_Hat_for_Raspberry_Pi/#installation)
 
 ```
 curl -sL https://github.com/Seeed-Studio/grove.py/raw/master/install.sh | sudo bash -s -
+
+ - or -
+
+git clone https://github.com/Seeed-Studio/grove.py
+cd grove.py
+sudo pip3 install .
 ```
+
+
 
 ## Setup Python
 The step to setup Grove Sensors installs python3 and python3-pip but just to be thorough
@@ -35,6 +44,7 @@ pip3 install -r requirements.txt --user
 ## Start Webapp
 There is a startup script ([start_webapp.sh](start_webapp.sh)) that simply starts a tmux
 session (webapp) and fires up flask.  To see the output, you need to attach to the tmux sesson.
+To cancel, attach and
 
 ```
 tmux attach -t webapp
