@@ -54,6 +54,6 @@ LOGGING = {
 
 # Load the local settings file if it exists
 if os.path.isfile('webapp/local_settings.py'):
-    from local_settings import *
+    from webapp.local_settings import *
 else:
     logging.error("No local settings file found.")
