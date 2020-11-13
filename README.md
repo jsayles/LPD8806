@@ -30,15 +30,14 @@ cd grove.py
 sudo pip3 install .
 ```
 
-
-
-## Setup Python
+## Setup Python Environment
 The step to setup Grove Sensors installs python3 and python3-pip but just to be thorough
 I'm including those steps here too.  
 
 ```
 sudo apt install python3 python3-pip
-pip3 install -r requirements.txt --user
+pip3 install pipenv --user
+pipenv install --three
 ```
 
 ## Start Webapp
