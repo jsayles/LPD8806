@@ -49,6 +49,14 @@ to the tmux sesson. To cancel, attach and hit Ctrl-C.
 tmux attach -t webapp
 ```
 
+To start the webapp but not run it through tmux, run the following:
+
+```
+pipenv run start_webapp
+```
+
+
+
 ## Crontab
 A simple way to make sure the webapp is running upon reboot is to install a crontab.
 
