@@ -9,7 +9,7 @@ verify_ssl = true
 Flask = "*"
 
 # Only install on RaspberryPI
-# Original Pi: armv61, Pi4: armv71
+# Original Pi: armv61, Pi3 and Pi4: armv7l
 "RPi.GPIO" = {version = "*", platform_machine = "== 'armv6l'"}
 
 # Working on these
