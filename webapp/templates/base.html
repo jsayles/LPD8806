@@ -9,22 +9,22 @@
   <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='apple-touch-icon-76x76.png') }}"/>
   <link rel="apple-touch-icon" sizes="152x152" href="{{ url_for('static', filename='apple-touch-icon-152x152.png') }}"/>
   <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon-180x180.png') }}"/>
-</head>
 
+  <script>
+  {% block scripts %}{% endblock %}
+  </script>
+</head>
 <body>
-<nav>
-  <h1>Blue Cam</h1>
-  <ul>
-    <li><a href="{{ url_for('home') }}">Home</a></li>
-  </ul>
-</nav>
-<section class="content">
-  <header>
-    {% block header %}{% endblock %}
-  </header>
-  {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-  {% endfor %}
-  {% block content %}{% endblock %}
-</section>
+  <nav>
+    <h1>Blue Cam</h1>
+    <ul>
+      <li><a href="{{ url_for('home') }}">Home</a></li>
+    </ul>
+  </nav>
+  <section class="content">
+    {% for message in get_flashed_messages() %}
+      <div class="flash">{{ message }}</div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+  </section>
 </body>

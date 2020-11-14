@@ -3,28 +3,39 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-  <div class="webcam_div" style="text-align: center; padding: 1em;">
-    <img id="stream" src="{{ cam_url }}" width="640" height="480" border=2>
+  <div id="webcam_div">
+    <img id="stream" src="{{ cam_url }}" width="760" height="570" border=2 />
   </div>
 
-  <!-- <table cellpadding="0" cellspacing="5" border="0">
-    <tbody><tr>
-      <td>
-        <a href="http://lightpi.local:5000/api/on" class="linkInActive" target="Temp">Light: ON</a>
-      </td>
-      <td>|</td>
-      <td>
-        <a href="http://lightpi.local:5000/api/dim" class="linkInActive" target="Temp">DIM</a>
-      </td>
-      <td>|</td>
-      <td>
-        <a href="http://lightpi.local:5000/api/off" class="linkInActive" target="Temp">OFF</a>
-      </td>
-      <td>|</td>
-      <td>
-        <a href="http://lightpi.local:5000/api/red" class="linkInActive" target="Temp">RED</a>
-      </td>
-    </tr>
-  </tbody>
-  </table> -->
+  <table cellpadding="0" cellspacing="5" border="0">
+    <tbody>
+      <tr>
+        <td>
+          <strong>Light Controls:</strong>
+        </td>
+        <td>
+          <button onclick="hit('{{ url_for('light_on') }}');">ON</button>
+        </td>
+        <td>|</td>
+        <td>
+          <button onclick="hit('{{ url_for('light_dim') }}');">DIM</button>
+        </td>
+        <td>|</td>
+        <td>
+          <button onclick="hit('{{ url_for('light_off') }}');">OFF</button>
+        </td>
+        <td>|</td>
+        <td>
+          <button onclick="hit('{{ url_for('light_red') }}');">RED</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}
+
+{% block scripts %}
+  function hit(url) {
+    var request = new Request(url, {method: 'GET'});
+    fetch(request).then(function(){});
+  }
 {% endblock %}

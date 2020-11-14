@@ -17,9 +17,9 @@ app = Flask(__name__)
 app.config.from_object('webapp.settings')
 
 logging_config = app.config['LOGGING']
-# if logging_config:
-#     app.logger.removeHandler(default_handler)
-#     logging.config.dictConfig(logging_config)
+if logging_config:
+    app.logger.removeHandler(default_handler)
+    logging.config.dictConfig(logging_config)
 
 
 ################################################################################
