@@ -1,14 +1,25 @@
-from flask import Flask
-from flask import g, redirect, render_template, request, session, url_for
+import logging
+import logging.config
+import traceback
+
+from flask import Flask, render_template, request, session, url_for, g
+from flask.logging import default_handler
 
 from lightpi.hardware import strip, string1, string2
+
+
+################################################################################
+# Application Definition
+################################################################################
 
 
 app = Flask(__name__)
 app.config.from_object('webapp.settings')
 
-
-DEFAULT_BRIGHTNESS = 50
+logging_config = app.config['LOGGING']
+if logging_config:
+    app.logger.removeHandler(default_handler)
+    logging.config.dictConfig(logging_config)
 
 
 ################################################################################
@@ -47,7 +58,7 @@ def light_off():
 def light_dim():
     strip.off()
     string1.off()
-    b = g.pop('brightness', DEFAULT_BRIGHTNESS)
+    b = g.pop('brightness', app.config['DEFAULT_BRIGHTNESS'])
     string2.fadeIn(b)
     return 'DIM'
 
@@ -56,7 +67,7 @@ def light_dim():
 def light_red():
     string1.off()
     string2.off()
-    b = g.pop('brightness', DEFAULT_BRIGHTNESS)
+    b = g.pop('brightness', app.config['DEFAULT_BRIGHTNESS'])
     strip.fadeInRed(max=b, step=2, delay=0.05)
     return 'RED'
 

@@ -1,8 +1,10 @@
+import logging
+
 fake_gpio = False
 try:
     import RPi.GPIO as GPIO
 except ModuleNotFoundError:
-    print("Raspberry Pi GPIO Unavailable")
+    logging.info("Raspberry Pi GPIO Unavailable")
     fake_gpio = True
 
 # import seeed_dht
@@ -21,7 +23,7 @@ TEMP_PIN = 14
 
 # Setup the GPIO Pins
 if fake_gpio:
-    print("Fake GPIO: Hardware Initialized")
+    logging.info("Fake GPIO: Hardware Initialized")
 else:
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)

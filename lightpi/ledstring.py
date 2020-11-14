@@ -1,4 +1,5 @@
 import time
+import logging
 
 fake_gpio = False
 try:
@@ -19,13 +20,13 @@ class LEDString:
 
     def on(self):
         if fake_gpio:
-            print(f"Fake GPIO: LEDString.on()")
+            logging.info(f"Fake GPIO: LEDString.on()")
         else:
             GPIO.output(self.pin, GPIO.HIGH)
 
     def off(self):
         if fake_gpio:
-            print(f"Fake GPIO: LEDString.off()")
+            logging.info(f"Fake GPIO: LEDString.off()")
         else:
             GPIO.output(self.pin, GPIO.LOW)
 
@@ -45,14 +46,12 @@ class PWMString:
             self.pwm.start(0)
 
     def __del__(self):
-        if fake_gpio:
-            print(f"Fake GPIO: pwm.stop()")
-        else:
+        if not fake_gpio:
             self.pwm.stop()
 
     def setBrightness(self, level):
         if fake_gpio:
-            print(f"Fake GPIO: setBrightness({level})")
+            logging.info(f"Fake GPIO: setBrightness({level})")
         else:
             self.brightness = level
             self.pwm.ChangeDutyCycle(level)

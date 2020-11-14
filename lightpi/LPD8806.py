@@ -4,6 +4,7 @@
 ################################################################################
 
 import time
+import logging
 
 fake_gpio = False
 try:
@@ -56,7 +57,7 @@ class LPD8806:
 
     def _write8(self, d):
         if fake_gpio:
-            print(f"Fake GPIO:  write({d})")
+            # logging.info(f"Fake GPIO:  write({d})")
             return
 
         # Basic, push SPI data out

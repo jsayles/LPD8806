@@ -16,6 +16,8 @@ SECRET_KEY = "SUPER_SECRET"
 # Default to Port of Vancouver
 WEBCAM_URL = "http://207.194.15.97/mjpg/video.mjpg"
 
+DEFAULT_BRIGHTNESS = 50
+
 
 #################################################################################
 # Logging

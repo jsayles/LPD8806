@@ -4,6 +4,7 @@
 ################################################################################
 
 import time
+import logging
 import RPi.GPIO as GPIO
 from rtttl import parse_rtttl
 
@@ -47,7 +48,7 @@ class Buzzer(object):
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.buzzer_pin, GPIO.OUT)
         tune = parse_rtttl(rtttl_tune)
-        print("Playing: %s" % tune['title'])
+        logging.info("Playing: %s" % tune['title'])
         for note in tune['notes']:
             p = note['frequency']
             d = 1.0 * note['duration'] / 1000
