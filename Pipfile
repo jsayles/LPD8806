@@ -10,17 +10,17 @@ start_webapp = "gunicorn --bind 0.0.0.0:5000 --workers 2 webapp.server:app"
 [dev-packages]
 
 [packages]
-Flask = "*"
-python-dotenv = "*"
-gunicorn = "*"
+Flask = "~=1.1"
+python-dotenv = "~=0.15"
+gunicorn = "~=20.0"
 
 # Only install on RaspberryPI
 # Original Pi: armv61, Pi3 and Pi4: armv7l
-"RPi.GPIO" = {version = "*", platform_machine = "== 'armv6l'"}
+"RPi.GPIO" = {version = "~=0.7", platform_machine = "=='armv6l'"}
 
 # Working on these
 #rtttl = "*"
-#seeed-python-dht
+#seeed-python-dht = "*"
 
 [requires]
 #python_version = "3.8"
