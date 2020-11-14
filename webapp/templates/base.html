@@ -1,6 +1,17 @@
 <!doctype html>
-<title>{% block title %}{% endblock %} - LightPi</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<head>
+  <title>{% block title %}{% endblock %} - LightPi</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='apple-touch-icon.png') }}"/>
+  <link rel="apple-touch-icon" sizes="57x57" href="{{ url_for('static', filename='apple-touch-icon-57x57.png') }}"/>
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='apple-touch-icon-76x76.png') }}"/>
+  <link rel="apple-touch-icon" sizes="152x152" href="{{ url_for('static', filename='apple-touch-icon-152x152.png') }}"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon-180x180.png') }}"/>
+</head>
+
+<body>
 <nav>
   <h1>Blue Cam</h1>
   <ul>
@@ -16,3 +27,4 @@
   {% endfor %}
   {% block content %}{% endblock %}
 </section>
+</body>
