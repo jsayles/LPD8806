@@ -32,22 +32,21 @@ LOGGING = {
         }
     },
     'handlers': {
-        'wsgi': {
+        'console': {
             'class': 'logging.StreamHandler',
             'stream': 'ext://flask.logging.wsgi_errors_stream',
             'formatter': 'default'
         },
         'file': {
-            'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'filename': 'flask.log',
             'formatter': 'default',
         },
     },
     'root': {
-        'level': 'INFO',
-        'handlers': ['wsgi', 'file']
-    }
+        'level': 'DEBUG',
+        'handlers': ['console', 'file']
+    },
 }
 
 
