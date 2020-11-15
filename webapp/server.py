@@ -80,15 +80,14 @@ def update():
     # {"red": 100, "green": 100, "blue": 100, "string1": 100, "string2": 100 }
     json_req = request.get_json()
 
-    r = json_req.get("red")
-    g = json_req.get("green")
-    b = json_req.get("blue")
-    strip.fillStrip(r, g, b)
+    red = json_req.get("red", 0)
+    green = json_req.get("green", 0)
+    blue = json_req.get("blue", 0)
+    s1 = json_req.get("string1", 0)
+    s2 = json_req.get("string2", 0)
 
-    s1 = json_req.get("string1")
+    strip.fillStrip(red, green, blue)
     string1.setBrightness(s1)
-
-    s2 = json_req.get("string2")
     string2.setBrightness(s2)
 
     return make_response(jsonify({"message": "Success!"}), 200)
