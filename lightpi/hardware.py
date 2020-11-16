@@ -29,8 +29,8 @@ else:
     GPIO.setwarnings(False)
     GPIO.setup(STRIP_CLCK, GPIO.OUT)
     GPIO.setup(STRIP_DATA, GPIO.OUT)
-    GPIO.setup(STRING1_PIN, GPIO.OUT, initial=GPIO.LOW)
-    GPIO.setup(STRING2_PIN, GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(STRING1_PIN, GPIO.OUT, initial=GPIO.HIGH)
+    GPIO.setup(STRING2_PIN, GPIO.OUT, initial=GPIO.HIGH)
     GPIO.setup(BUZZ_PIN, GPIO.OUT, initial=GPIO.LOW)
 
 # Instantiate our hardware
