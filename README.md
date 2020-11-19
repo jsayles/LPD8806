@@ -14,6 +14,9 @@ Wire up the led string lights using an NPN transistor to connect the GPIO and th
 https://elinux.org/RPi_GPIO_Interface_Circuits
 
 ![circuit diagram](https://raw.githubusercontent.com/jsayles/LightPi/master/docs/npn_switch.png?raw=true)
+![2N3904 pinout](https://raw.githubusercontent.com/jsayles/LightPi/master/docs/pinout-of-2N3904-npn-transistor_3.png?raw=true)
+
+docs/pinout-of-2N3904-npn-transistor_3.png
 
 ## Grove Sensors
 The temperature/humidity sensor uses a Seeed Studio Grove [DHT22](https://wiki.seeedstudio.com/Grove-Temperature_and_Humidity_Sensor_Pro/)
