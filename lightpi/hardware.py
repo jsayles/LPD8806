@@ -13,13 +13,19 @@ from lightpi.LPD8806 import LPD8806
 from lightpi.ledstring import PWMString
 
 
-STRING1_PIN = 7
-STRING2_PIN = 8
-BUZZ_PIN = 9
+BUZZ_PIN = 18
+
 STRIP_DATA = 10
 STRIP_CLCK = 11
 STRIP_COUNT = 32
-TEMP_PIN = 14
+
+STRING1_PIN = 7
+STRING2_PIN = 8
+STRING3_PIN = 9
+STRING4_PIN = 23
+STRING5_PIN = 24
+STRING6_PIN = 25
+
 
 # Setup the GPIO Pins
 if fake_gpio:
