@@ -126,6 +126,7 @@ dmypy.json
 
 
 # Venv Dirs
+/pyvenv.cfg
 /bin
 /lib
 /include
