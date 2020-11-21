@@ -44,6 +44,51 @@ class Buzzer(object):
             GPIO.output(self.buzzer_pin, False)
             time.sleep(delay)
 
+    def play(self, tune):
+        x=0
+        
+        if(tune==1):
+            pitches=[262,294,330,349,392,440,494,523,587,659,698,784,880,988,1047]
+            duration=0.1
+            for p in pitches:
+                self.buzz(p, duration)
+                time.sleep(duration * 0.5)
+            for p in reversed(pitches):
+                self.buzz(p, duration)
+                time.sleep(duration * 0.5)
+
+        elif(tune==2):
+            pitches=[262,330,392,523,1047]
+            duration=[0.2,0.2,0.2,0.2,0.2,0,5]
+            for p in pitches:
+                self.buzz(p, duration[x])
+                time.sleep(duration[x] * 0.5)
+                x += 1
+
+        elif(tune==3):
+            pitches=[392,294,0,392,294,0,392,0,392,392,392,0,1047,262]
+            duration=[0.2,0.2,0.2,0.2,0.2,0.2,0.1,0.1,0.1,0.1,0.1,0.1,0.8,0.4]
+            for p in pitches:
+                self.buzz(p, duration[x])
+                time.sleep(duration[x] * 0.5)
+                x += 1
+
+        elif(tune==4):
+            pitches=[1047, 988,659]
+            duration=[0.1,0.1,0.2]
+            for p in pitches:
+                self.buzz(p, duration[x])
+                time.sleep(duration[x] *0.5)
+                x += 1
+
+        elif(tune==5):
+            pitches=[1047, 988,523]
+            duration=[0.1,0.1,0.2]
+            for p in pitches:
+                self.buzz(p, duration[x])
+                time.sleep(duration[x] * 0.5)
+                x += 1
+
     def play_rtttl(self, rtttl_tune):
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.buzzer_pin, GPIO.OUT)
