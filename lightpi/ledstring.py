@@ -84,6 +84,22 @@ class LEDStringArray:
         for pin in pins:
             self.strings.append(PWMString(pin))
 
+    def on(self, count=0, delay=0):
+        top = count
+        if count <= 0 or count > len(self.strings):
+            top = len(self.strings)
+        index = 0
+        while index < top:
+            print(f"string{index}.on()")
+            string = self.strings[index]
+            string.on()
+            time.sleep(delay)
+            index += 1
+
+    def off(self):
+        for string in self.strings:
+            string.off()
+
     def stringOn(self, string_id):
         self.strings[string_id].on()
 
