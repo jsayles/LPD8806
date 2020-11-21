@@ -83,7 +83,6 @@ class StringArray:
         self.strings = []
         for pin in pins:
             self.strings.append(PWMString(pin))
-        ]
 
     def stringOn(self, string_id):
         self.strings[string_id].on()
