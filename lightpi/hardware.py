@@ -10,7 +10,7 @@ except ModuleNotFoundError:
 # import seeed_dht
 #from lightpi.buzzer import Buzzer
 from lightpi.LPD8806 import LPD8806
-from lightpi.ledstring import PWMString
+from lightpi.ledstring import LEDStringArray
 
 
 BUZZ_PIN = 18
@@ -36,4 +36,4 @@ else:
 # Instantiate our hardware
 #buzzer = Buzzer(BUZZ_PIN)
 strip = LPD8806(STRIP_COUNT, STRIP_DATA, STRIP_CLCK)
-strings = StringArray(STRING_PINS)
+strings = LEDStringArray(STRING_PINS)

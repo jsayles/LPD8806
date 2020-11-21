@@ -77,7 +77,7 @@ class PWMString:
         self.off()
 
 
-class StringArray:
+class LEDStringArray:
 
     def __init__(self, pins):
         self.strings = []
