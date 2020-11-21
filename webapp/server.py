@@ -7,7 +7,7 @@ from flask import render_template, request, url_for, g
 from flask import jsonify, make_response
 from flask.logging import default_handler
 
-from lightpi.hardware import strip, string1, string2
+from lightpi.hardware import strip, strings, buzzer
 
 
 ################################################################################
@@ -43,32 +43,28 @@ def home():
 @app.route("/api/on")
 def light_on():
     strip.orange()
-    string1.on()
-    string2.on()
+    strings.on()
     return "ON"
 
 
 @app.route("/api/off")
 def light_off():
     strip.off()
-    string1.fadeOut()
-    string2.fadeOut()
+    strings.off()
     return 'OFF'
 
 
 @app.route("/api/dim")
 def light_dim():
     strip.off()
-    string1.off()
-    b = g.pop('brightness', app.config['DEFAULT_BRIGHTNESS'])
-    string2.fadeIn(b)
+    strings.on(1)
+    # b = g.pop('brightness', app.config['DEFAULT_BRIGHTNESS'])
+    # string2.fadeIn(b)
     return 'DIM'
-
 
 @app.route("/api/red")
 def light_red():
-    string1.off()
-    string2.off()
+    strings.off()
     b = g.pop('brightness', app.config['DEFAULT_BRIGHTNESS'])
     strip.fadeInRed(max=b, step=2, delay=0.05)
     return 'RED'

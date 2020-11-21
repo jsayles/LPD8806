@@ -9,7 +9,10 @@ Blog Post:  https://jacobsayles.com/2020/09/28/aha2/
 - 2 LED string lights:  https://www.amazon.com/Sanniu-Operated-Christmas-Centerpiece-Decoration/dp/B072NH2FQ1
 - Seperate USB power adapters for Pi and LEDs
 
-# LED String Light Circuit
+## Pinouts
+
+
+## LED String Light Circuit
 Wire up the led string lights using an NPN transistor to connect the GPIO and the 5v rail.
 https://elinux.org/RPi_GPIO_Interface_Circuits
 
@@ -17,6 +20,13 @@ https://elinux.org/RPi_GPIO_Interface_Circuits
 ![2N3904 pinout](https://raw.githubusercontent.com/jsayles/LightPi/master/docs/pinout-of-2N3904-npn-transistor_3.png?raw=true)
 
 ![Pi Pinout](https://raw.githubusercontent.com/jsayles/LightPi/master/docs/PiPinout.jpg?raw=true)
+
+## Apache Install
+
+```
+sudo apt-get install apache2 libapache2-mod-wsgi-py3
+sudo ln -s ~lightpi/LightPi/conf/apache2/lightpi.conf /etc/apache2/sites-enabled
+```
 
 ## Grove Sensors
 The temperature/humidity sensor uses a Seeed Studio Grove [DHT22](https://wiki.seeedstudio.com/Grove-Temperature_and_Humidity_Sensor_Pro/)
