@@ -75,3 +75,18 @@ class PWMString:
             self.setBrightness(l)
             time.sleep(delay)
         self.off()
+
+
+class StringArray:
+
+    def __init__(self, pins):
+        self.strings = []
+        for pin in pins:
+            self.strings.append(PWMString(pin))
+        ]
+
+    def stringOn(self, string_id):
+        self.strings[string_id].on()
+
+    def stringOff(self, string_id):
+        self.strings[string_id].off()

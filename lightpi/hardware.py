@@ -19,13 +19,7 @@ STRIP_DATA = 10
 STRIP_CLCK = 11
 STRIP_COUNT = 32
 
-STRING1_PIN = 7
-STRING2_PIN = 8
-STRING3_PIN = 9
-STRING4_PIN = 23
-STRING5_PIN = 24
-STRING6_PIN = 25
-
+STRING_PINS = [7, 8, 9, 23, 24, 25]
 
 # Setup the GPIO Pins
 if fake_gpio:
@@ -33,15 +27,13 @@ if fake_gpio:
 else:
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
+    #GPIO.setup(BUZZ_PIN, GPIO.OUT, initial=GPIO.LOW)
     GPIO.setup(STRIP_CLCK, GPIO.OUT)
     GPIO.setup(STRIP_DATA, GPIO.OUT)
-    GPIO.setup(STRING1_PIN, GPIO.OUT, initial=GPIO.HIGH)
-    GPIO.setup(STRING2_PIN, GPIO.OUT, initial=GPIO.HIGH)
-    GPIO.setup(BUZZ_PIN, GPIO.OUT, initial=GPIO.LOW)
+    for pin in STRING_PINS:
+        GPIO.setup(pin, GPIO.OUT, initial=GPIO.HIGH)
 
 # Instantiate our hardware
-strip = LPD8806(STRIP_COUNT, STRIP_DATA, STRIP_CLCK)
-string1 = PWMString(STRING1_PIN)
-string2 = PWMString(STRING2_PIN)
-# temp_sensor = seeed_dht.DHT("22", TEMP_PIN)
 #buzzer = Buzzer(BUZZ_PIN)
+strip = LPD8806(STRIP_COUNT, STRIP_DATA, STRIP_CLCK)
+strings = StringArray(STRING_PINS)
