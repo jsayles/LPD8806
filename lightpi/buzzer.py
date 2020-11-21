@@ -17,7 +17,7 @@ class Buzzer(object):
         self.buzzer_pin = bcm_pin
 
         # Setup the GPIO pins
-        GPIO.setmode(self.buzzer_pin)
+        GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.buzzer_pin, GPIO.IN)
         GPIO.setup(self.buzzer_pin, GPIO.OUT)
 
