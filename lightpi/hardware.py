@@ -12,7 +12,7 @@ from lightpi.LPD8806 import LPD8806
 from lightpi.ledstring import LEDStringArray
 
 
-BUZZ_PIN = 18
+# BUZZ_PIN = 18
 
 STRIP_DATA = 7      # Blue wire
 STRIP_CLCK = 8      # Orange Wire
@@ -26,13 +26,13 @@ if fake_gpio:
 else:
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
-    GPIO.setup(BUZZ_PIN, GPIO.OUT, initial=GPIO.LOW)
+    # GPIO.setup(BUZZ_PIN, GPIO.OUT, initial=GPIO.LOW)
     GPIO.setup(STRIP_CLCK, GPIO.OUT)
     GPIO.setup(STRIP_DATA, GPIO.OUT)
     for pin in STRING_PINS:
         GPIO.setup(pin, GPIO.OUT, initial=GPIO.HIGH)
 
 # Instantiate our hardware
-buzzer = Buzzer(BUZZ_PIN)
+# buzzer = Buzzer(BUZZ_PIN)
 strip = LPD8806(STRIP_COUNT, STRIP_DATA, STRIP_CLCK)
 strings = LEDStringArray(STRING_PINS)
