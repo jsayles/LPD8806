@@ -81,10 +81,18 @@ def update():
     blue = json_req.get("blue", 0)
     s1 = json_req.get("string1", 0)
     s2 = json_req.get("string2", 0)
+    s3 = json_req.get("string3", 0)
+    s4 = json_req.get("string4", 0)
+    s5 = json_req.get("string5", 0)
+    s6 = json_req.get("string6", 0)
 
     strip.fillStrip(red, green, blue)
     string1.setBrightness(s1)
     string2.setBrightness(s2)
+    string3.setBrightness(s3)
+    string4.setBrightness(s4)
+    string5.setBrightness(s5)
+    string6.setBrightness(s6)
 
     return make_response(jsonify({"message": "Success!"}), 200)
 
