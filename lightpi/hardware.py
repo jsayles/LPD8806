@@ -14,11 +14,11 @@ from lightpi.ledstring import LEDStringArray
 
 BUZZ_PIN = 18
 
-STRIP_DATA = 10
-STRIP_CLCK = 11
+STRIP_DATA = 7      # Blue wire
+STRIP_CLCK = 8      # Orange Wire
 STRIP_COUNT = 32
 
-STRING_PINS = [19, 20, 21, 23, 24, 25]
+STRING_PINS = [23, 24, 25, 16, 20, 21]
 
 # Setup the GPIO Pins
 if fake_gpio:
