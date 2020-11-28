@@ -7,7 +7,7 @@ from flask import render_template, request, url_for, g
 from flask import jsonify, make_response
 from flask.logging import default_handler
 
-from lightpi.hardware import strip, strings, buzzer
+from lightpi.hardware import strip, strings
 
 
 ################################################################################

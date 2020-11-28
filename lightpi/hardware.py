@@ -7,7 +7,7 @@ except ModuleNotFoundError:
     logging.info("Raspberry Pi GPIO Unavailable")
     fake_gpio = True
 
-from lightpi.buzzer import Buzzer
+# from lightpi.buzzer import Buzzer
 from lightpi.LPD8806 import LPD8806
 from lightpi.ledstring import LEDStringArray
 
