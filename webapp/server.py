@@ -42,7 +42,7 @@ def home():
 
 @app.route("/api/on")
 def light_on():
-    strip.orange()
+    strip.off()
     strings.on()
     return "ON"
 
