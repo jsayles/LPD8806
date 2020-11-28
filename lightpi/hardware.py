@@ -18,7 +18,7 @@ STRIP_DATA = 10
 STRIP_CLCK = 11
 STRIP_COUNT = 32
 
-STRING_PINS = [7, 8, 9, 23, 24, 25]
+STRING_PINS = [19, 20, 21, 23, 24, 25]
 
 # Setup the GPIO Pins
 if fake_gpio:
