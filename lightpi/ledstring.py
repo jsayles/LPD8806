@@ -82,7 +82,8 @@ class LEDStringArray:
     def __init__(self, pins):
         self.strings = []
         for pin in pins:
-            self.strings.append(PWMString(pin))
+            # self.strings.append(PWMString(pin))
+            self.strings.append(LEDString(pin))
 
     def on(self, count=0, delay=0):
         top = count
