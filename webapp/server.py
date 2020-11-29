@@ -57,6 +57,7 @@ def light_off():
 @app.route("/api/dim")
 def light_dim():
     strip.off()
+    strings.off()
     strings.on(1)
     # b = g.pop('brightness', app.config['DEFAULT_BRIGHTNESS'])
     # string2.fadeIn(b)
