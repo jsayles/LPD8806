@@ -23,6 +23,7 @@ if logging_config:
     app.logger.removeHandler(default_handler)
     logging.config.dictConfig(logging_config)
 
+global temperature = 0.0
 
 ################################################################################
 # Webapp Routes
@@ -72,12 +73,11 @@ def light_red():
 
 @app.route("/api/temperature/", methods=['GET'])
 def get_temperature():
-    temp = g.temperature
-    return make_response(jsonify({"temperature": temp}), 200)
+    return make_response(jsonify({"temperature": temperature}), 200)
 
 @app.route("/api/temperature/<float:temp>", methods=['POST'])
 def update_temperature(temp):
-    g.temperature = temp
+    temperature = temp
     return make_response(jsonify({"message": "Success!"}), 200)
 
 @app.route("/api/update", methods=['POST'])
