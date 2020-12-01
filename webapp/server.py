@@ -70,6 +70,9 @@ def light_red():
     strip.fadeInRed(max=b, step=2, delay=0.05)
     return 'RED'
 
+@app.route("/api/sensors/temperature/<float:temp>", methods=['POST'])
+def update_sensors(temp):
+    print(f"update_sensors({temp})")
 
 @app.route("/api/update", methods=['POST'])
 def update():
