@@ -70,9 +70,14 @@ def light_red():
     strip.fadeInRed(max=b, step=2, delay=0.05)
     return 'RED'
 
+@app.route("/api/temperature/", methods=['GET'])
+def get_temperature():
+    temp = g.temperature
+    return make_response(jsonify({"temperature": temp}), 200)
+
 @app.route("/api/temperature/<float:temp>", methods=['POST'])
 def update_temperature(temp):
-    print(f"update_temperature({temp})")
+    g.temperature = temp
     return make_response(jsonify({"message": "Success!"}), 200)
 
 @app.route("/api/update", methods=['POST'])
