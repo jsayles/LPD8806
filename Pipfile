@@ -4,15 +4,14 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [scripts]
-#start_webapp = "flask run --host 0.0.0.0 --port 5000"
-start_webapp = "gunicorn --bind 0.0.0.0:5000 --workers 2 webapp.server:app"
+start_webapp = "flask run --host 0.0.0.0 --port 5000"
 
 [dev-packages]
 
 [packages]
 Flask = "~=1.1"
+Flask-Caching = "~=1.9"
 python-dotenv = "~=0.15"
-gunicorn = "~=20.0"
 
 # Only install on RaspberryPI
 # Original Pi: armv61, Pi3 and Pi4: armv7l

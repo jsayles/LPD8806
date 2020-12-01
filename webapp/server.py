@@ -6,9 +6,11 @@ from flask import Flask
 from flask import render_template, request, url_for, g
 from flask import jsonify, make_response
 from flask.logging import default_handler
+from flask_caching import Cache
 
 from lightpi.hardware import strip, strings
 
+global temperature
 
 ################################################################################
 # Application Definition
@@ -18,12 +20,14 @@ from lightpi.hardware import strip, strings
 app = Flask(__name__)
 app.config.from_object('webapp.settings')
 
+# cache = Cache(app, config={'CACHE_TYPE': 'simple'})
+
 logging_config = app.config['LOGGING']
 if logging_config:
     app.logger.removeHandler(default_handler)
     logging.config.dictConfig(logging_config)
 
-global temperature = 0.0
+temperature = 0.0
 
 ################################################################################
 # Webapp Routes
