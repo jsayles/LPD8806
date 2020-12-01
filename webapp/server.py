@@ -23,6 +23,7 @@ if logging_config:
     app.logger.removeHandler(default_handler)
     logging.config.dictConfig(logging_config)
 
+g.temperature = 0.0
 
 ################################################################################
 # Webapp Routes
