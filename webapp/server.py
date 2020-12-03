@@ -40,7 +40,7 @@ if logging_config:
 def home():
     cam_url = app.config['WEBCAM_URL']
     temp_c = get_temperature()
-    temp_f = 9.0/5.0 * temp_c + 32
+    temp_f = round(9.0/5.0 * temp_c + 32, 2)
     return render_template('home.html', cam_url=cam_url, temp_c=temp_c, temp_f=temp_f)
 
 
