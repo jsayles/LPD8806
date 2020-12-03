@@ -10,7 +10,10 @@ from flask_caching import Cache
 
 from lightpi.hardware import strip, strings
 
-global temperature
+
+TEMPERATURE = "temperature"
+BRIGHTNESS = "brightness"
+
 
 ################################################################################
 # Application Definition
@@ -20,14 +23,13 @@ global temperature
 app = Flask(__name__)
 app.config.from_object('webapp.settings')
 
-# cache = Cache(app, config={'CACHE_TYPE': 'simple'})
+cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
 logging_config = app.config['LOGGING']
 if logging_config:
     app.logger.removeHandler(default_handler)
     logging.config.dictConfig(logging_config)
 
-temperature = 0.0
 
 ################################################################################
 # Webapp Routes
@@ -37,7 +39,27 @@ temperature = 0.0
 @app.route("/")
 def home():
     cam_url = app.config['WEBCAM_URL']
-    return render_template('home.html', cam_url=cam_url)
+    temp = get_temperature()
+    return render_template('home.html', cam_url=cam_url, temperature=temp)
+
+
+################################################################################
+# Helper Functions
+################################################################################
+
+
+def get_temperature():
+    temp = cache.get(TEMPERATURE)
+    if not temp:
+        temp = 0
+    return temp
+
+
+def get_brightness():
+    brightness = cache.get(BRIGHTNESS)
+    if not brightness:
+        brightness = app.config['DEFAULT_BRIGHTNESS']
+    return brightness
 
 
 ################################################################################
@@ -59,29 +81,47 @@ def light_off():
     return 'OFF'
 
 
-@app.route("/api/dim")
-def light_dim():
+@app.route("/api/dim/<int:level>")
+def light_dim(level):
+    if level <= 0 or level >= 6:
+        return "Invalid Brightness"
+
     strip.off()
     strings.off()
-    strings.on(1)
-    # b = g.pop('brightness', app.config['DEFAULT_BRIGHTNESS'])
-    # string2.fadeIn(b)
-    return 'DIM'
+    strings.on(level)
+    # brightness = get_brightness()
+    # string1.fadeIn(b)
+    return f'DIM {level}'
 
 @app.route("/api/red")
 def light_red():
     strings.off()
-    b = g.pop('brightness', app.config['DEFAULT_BRIGHTNESS'])
-    strip.fadeInRed(max=b, step=2, delay=0.05)
+    brightness = get_brightness()
+    strip.fadeInRed(max=brightness, step=2, delay=0.05)
     return 'RED'
 
+@app.route("/api/green")
+def light_green():
+    strings.off()
+    brightness = get_brightness()
+    strip.fadeInGreen(max=brightness, step=2, delay=0.05)
+    return 'GREEN'
+
+@app.route("/api/blue")
+def light_blue():
+    strings.off()
+    brightness = get_brightness()
+    strip.fadeInBlue(max=brightness, step=2, delay=0.05)
+    return 'BLUE'
+
 @app.route("/api/temperature/", methods=['GET'])
-def get_temperature():
-    return make_response(jsonify({"temperature": temperature}), 200)
+def temperature():
+    temp = get_temperature()
+    return make_response(jsonify({"temperature": temp}), 200)
 
 @app.route("/api/temperature/<float:temp>", methods=['POST'])
 def update_temperature(temp):
-    temperature = temp
+    cache.set(TEMPERATURE, temp)
     return make_response(jsonify({"message": "Success!"}), 200)
 
 @app.route("/api/update", methods=['POST'])
@@ -115,5 +155,5 @@ def update():
 def brightness(level):
     if level < 0 or level > 100:
         return "Invalid Brightness"
-    g.brightness = level
+    cache.set(BRIGHTNESS, level)
     return "New Brightess: %d" % level

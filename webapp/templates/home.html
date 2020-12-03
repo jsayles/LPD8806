@@ -3,6 +3,8 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+  <h3 style="text-align: center;">Temperature: {{ temperature }} &#176;C</h3>
+
   <div id="webcam_div">
     <img id="stream" src="{{ cam_url }}" width="760" height="570" border=2 />
   </div>
@@ -18,15 +20,39 @@
         </td>
         <td>|</td>
         <td>
-          <button onclick="hit('{{ url_for('light_dim') }}');">DIM</button>
+          <button onclick="hit('{{ url_for('light_dim', level=1) }}');">1</button>
         </td>
         <td>|</td>
         <td>
-          <button onclick="hit('{{ url_for('light_off') }}');">OFF</button>
+          <button onclick="hit('{{ url_for('light_dim', level=2) }}');">2</button>
+        </td>
+        <td>|</td>
+        <td>
+          <button onclick="hit('{{ url_for('light_dim', level=3) }}');">3</button>
+        </td>
+        <td>|</td>
+        <td>
+          <button onclick="hit('{{ url_for('light_dim', level=4) }}');">4</button>
+        </td>
+        <td>|</td>
+        <td>
+          <button onclick="hit('{{ url_for('light_dim', level=5) }}');">5</button>
         </td>
         <td>|</td>
         <td>
           <button onclick="hit('{{ url_for('light_red') }}');">RED</button>
+        </td>
+        <td>|</td>
+        <td>
+          <button onclick="hit('{{ url_for('light_green') }}');">GREEN</button>
+        </td>
+        <td>|</td>
+        <td>
+          <button onclick="hit('{{ url_for('light_blue') }}');">BLUE</button>
+        </td>
+        <td>|</td>
+        <td>
+          <button onclick="hit('{{ url_for('light_off') }}');">OFF</button>
         </td>
       </tr>
     </tbody>
