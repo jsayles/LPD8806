@@ -3,7 +3,7 @@
 {% block title %}Blue Cam{% endblock %}
 
 {% block content %}
-  <h3 style="text-align: center;">Temperature: {{ temperature }} &#176;C</h3>
+  <h3 style="text-align: center;">Temperature: {{ temp_c }} &#176;C/{{ temp_f }}&#176;F</h3>
 
   <div id="webcam_div">
     <img id="stream" src="{{ cam_url }}" width="760" height="570" border=2 />

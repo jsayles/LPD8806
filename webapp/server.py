@@ -39,8 +39,9 @@ if logging_config:
 @app.route("/")
 def home():
     cam_url = app.config['WEBCAM_URL']
-    temp = get_temperature()
-    return render_template('home.html', cam_url=cam_url, temperature=temp)
+    temp_c = get_temperature()
+    temp_f = 9.0/5.0 * temp_c + 32
+    return render_template('home.html', cam_url=cam_url, temp_c=temp_c, temp_f=temp_f)
 
 
 ################################################################################
@@ -116,8 +117,8 @@ def light_blue():
 
 @app.route("/api/temperature/", methods=['GET'])
 def temperature():
-    temp = get_temperature()
-    return make_response(jsonify({"temperature": temp}), 200)
+    temp_c = get_temperature()
+    return make_response(jsonify({"temperature": temp_c}), 200)
 
 @app.route("/api/temperature/<float:temp>", methods=['POST'])
 def update_temperature(temp):
